@@ -1,0 +1,23 @@
+Map2u\ForumBundle\Entity\FrequentlyAskedQuestionAnswers:
+    type: entity
+    table: map2u__forum_faq_answers
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        answer:
+            type: string
+            nullable: false
+        description:
+            type: string
+            nullable: true
+    manyToOne:
+        question:
+            targetEntity: Map2u\ForumBundle\Entity\FrequentlyAskedQuestions
+            inversedBy: answers
+            nullable: true
+            joinColumn:
+                name: fk_question_id
+                referencedColumnName: id
+                onDelete: SET NULL

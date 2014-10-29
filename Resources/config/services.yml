@@ -1,0 +1,58 @@
+services:
+#    map2u_forum.example:
+#        class: Map2u\ForumBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+    map2u_forum.admin.forum:
+        class: Map2u\ForumBundle\Admin\ForumAdmin
+        arguments: [~, Map2u\ForumBundle\Entity\Forum, Map2uForumBundle:ForumAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: forum, label: Forum}
+
+    map2u_forum.admin.category:
+        class: Map2u\ForumBundle\Admin\CategoryAdmin
+        arguments: [~, Map2u\ForumBundle\Entity\Category, Map2uForumBundle:CategoryAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: forum, label: Category}
+
+    map2u_forum.admin.board:
+        class: Map2u\ForumBundle\Admin\BoardAdmin
+        arguments: [~, Map2u\ForumBundle\Entity\Board, Map2uForumBundle:BoardAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: forum, label: Board}
+
+    map2u_forum.admin.topic:
+        class: Map2u\ForumBundle\Admin\TopicAdmin
+        arguments: [~, Map2u\ForumBundle\Entity\Topic, Map2uForumBundle:TopicAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: forum, label: Topic}
+
+    map2u_forum.admin.post:
+        class: Map2u\ForumBundle\Admin\PostAdmin
+        arguments: [~, Map2u\ForumBundle\Entity\Post, Map2uForumBundle:PostAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: forum, label: Post}
+
+    map2u_forum.admin.subscription:
+        class: Map2u\ForumBundle\Admin\SubscriptionAdmin
+        arguments: [~, Map2u\ForumBundle\Entity\Subscription, Map2uForumBundle:SubscriptionAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: forum, label: Subscription}
+
+    map2u_forum.admin.registry:
+        class: Map2u\ForumBundle\Admin\RegistryAdmin
+        arguments: [~, Map2u\ForumBundle\Entity\Registry, Map2uForumBundle:RegistryAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: forum, label: Registry}
+
+
+    map2u_forum.admin.frequently_asked_questions:
+        class: Map2u\ForumBundle\Admin\FrequentlyAskedQuestionsAdmin
+        arguments: [~, Map2u\ForumBundle\Entity\FrequentlyAskedQuestions, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: forum, label: FAQs}
+
+    map2u_forum.admin.frequently_asked_question_answers:
+        class: Map2u\ForumBundle\Admin\FrequentlyAskedQuestionAnswersAdmin
+        arguments: [~, Map2u\ForumBundle\Entity\FrequentlyAskedQuestionAnswers, Map2uForumBundle:FrequentlyAskedQuestionAnswersAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: forum, label: FAQs Answer}

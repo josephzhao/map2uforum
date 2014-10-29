@@ -1,0 +1,12 @@
+
+#ccdn_forum_user_category_index:
+#    pattern: /index
+#    defaults: { _controller: Map2uForumBundle:UserCategory:index, _locale: en, forumName: default }
+
+ccdn_forum_user_category_index:
+    path:     /{forumName}
+    defaults: { _controller: Map2uForumBundle:UserCategory:index, _locale: en, forumName: default }
+
+ccdn_forum_user_category_show:
+    path:     /{forumName}/category/{categoryId}
+    defaults: { _controller: Map2uForumBundle:UserCategory:show, _locale: en, forumName: default }

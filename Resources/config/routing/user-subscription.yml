@@ -1,0 +1,12 @@
+
+ccdn_forum_user_subscription_index:
+    pattern: /
+    defaults: { _controller: Map2uForumBundle:UserSubscription:index, _locale: en }
+
+ccdn_forum_user_subscription_subscribe:
+    pattern: /topic/{topicId}/subscribe
+    defaults: { _controller: Map2uForumBundle:UserSubscription:subscribe, _locale: en }
+
+ccdn_forum_user_subscription_unsubscribe:
+    pattern: /topic/{topicId}/unsubscribe
+    defaults: { _controller: Map2uForumBundle:UserSubscription:unsubscribe, _locale: en }

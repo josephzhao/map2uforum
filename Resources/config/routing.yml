@@ -1,0 +1,55 @@
+Map2uForumBundle-Admin:
+    resource: "@Map2uForumBundle/Resources/config/routing/admin.yml"
+    prefix: /{_locale}/forum/admin
+
+Map2uForumBundle-Admin-Forum:
+    resource: "@Map2uForumBundle/Resources/config/routing/admin-forum.yml"
+    prefix: /{_locale}/forum/admin/manage-forums
+
+Map2uForumBundle-Admin-Category:
+    resource: "@Map2uForumBundle/Resources/config/routing/admin-category.yml"
+    prefix: /{_locale}/forum/admin/manage-categories
+
+Map2uForumBundle-Admin-Board:
+    resource: "@Map2uForumBundle/Resources/config/routing/admin-board.yml"
+    prefix: /{_locale}/forum/admin/manage-boards
+
+Map2uForumBundle-Admin-Topic:
+    resource: "@Map2uForumBundle/Resources/config/routing/admin-topic.yml"
+    prefix: /{_locale}/forum/admin/manage-topics
+
+Map2uForumBundle-Admin-Post:
+    resource: "@Map2uForumBundle/Resources/config/routing/admin-post.yml"
+    prefix: /{_locale}/forum/admin/manage-posts
+
+
+
+Map2uForumBundle-Moderator-Topic:
+    resource: "@Map2uForumBundle/Resources/config/routing/moderator-topic.yml"
+    prefix: /{_locale}/forum/{forumName}/moderator/manage-topics
+
+Map2uForumBundle-Moderator-Post:
+    resource: "@Map2uForumBundle/Resources/config/routing/moderator-post.yml"
+    prefix: /{_locale}/forum/{forumName}/moderator/manage-posts
+
+
+
+Map2uForumBundle-User-Category:
+    resource: "@Map2uForumBundle/Resources/config/routing/user-category.yml"
+    prefix: /{_locale}/forum
+
+Map2uForumBundle-User-Board:
+    resource: "@Map2uForumBundle/Resources/config/routing/user-board.yml"
+    prefix: /{_locale}/forum/{forumName}/board
+
+Map2uForumBundle-User-Topic:
+    resource: "@Map2uForumBundle/Resources/config/routing/user-topic.yml"
+    prefix: /{_locale}/forum/{forumName}/topic
+
+Map2uForumBundle-User-Post:
+    resource: "@Map2uForumBundle/Resources/config/routing/user-post.yml"
+    prefix: /{_locale}/forum/{forumName}/post
+
+Map2uForumBundle-User-Subscription:
+    resource: "@Map2uForumBundle/Resources/config/routing/user-subscription.yml"
+    prefix: /{_locale}/forum/{forumName}/subscription

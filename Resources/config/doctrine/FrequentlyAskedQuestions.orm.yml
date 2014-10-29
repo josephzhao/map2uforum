@@ -1,0 +1,25 @@
+Map2u\ForumBundle\Entity\FrequentlyAskedQuestions:
+    type: entity
+    table: map2u__forum_faq
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        question:
+            type: string
+            unique: true
+            nullable: false
+        enabled:
+            type: boolean
+            nullable: true 
+            options:
+                default: true
+        description:
+            type: string
+            nullable: true            
+    oneToMany:
+        answers:
+            targetEntity: Map2u\ForumBundle\Entity\FrequentlyAskedQuestionAnswers
+            mappedBy: question
+            cascade: ["persist", "remove"]

@@ -1,0 +1,36 @@
+
+ccdn_forum_admin_board_list:
+    pattern: /
+    defaults: { _controller: Map2uForumBundle:AdminBoard:list, _locale: en }
+
+ccdn_forum_admin_board_create:
+    pattern: /create
+    defaults: { _controller: Map2uForumBundle:AdminBoard:create, _locale: en }
+
+ccdn_forum_admin_board_create_process:
+    pattern: /create/process
+    defaults: { _controller: Map2uForumBundle:AdminBoard:createProcess, _locale: en }
+
+ccdn_forum_admin_board_edit:
+    pattern: /edit/{boardId}
+    defaults: { _controller: Map2uForumBundle:AdminBoard:edit, _locale: en }
+
+ccdn_forum_admin_board_edit_process:
+    pattern: /edit/{boardId}/process
+    defaults: { _controller: Map2uForumBundle:AdminBoard:editProcess, _locale: en }
+
+ccdn_forum_admin_board_delete:
+    pattern: /delete/{boardId}
+    defaults: { _controller: Map2uForumBundle:AdminBoard:delete, _locale: en }
+
+ccdn_forum_admin_board_delete_process:
+    pattern: /delete/{boardId}/process
+    defaults: { _controller: Map2uForumBundle:AdminBoard:deleteProcess, _locale: en }
+
+ccdn_forum_admin_board_reorder_up:
+    pattern: /reorder/{boardId}/up
+    defaults: { _controller: Map2uForumBundle:AdminBoard:reorder, _locale: en, direction: 0 }
+
+ccdn_forum_admin_board_reorder_down:
+    pattern: /reorder/{boardId}/down
+    defaults: { _controller: Map2uForumBundle:AdminBoard:reorder, _locale: en, direction: 1 }
