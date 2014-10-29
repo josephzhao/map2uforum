@@ -1,0 +1,31 @@
+{
+  "name" : "map2u/forum-bundle",
+    "description" : "Map2u ForumBundle",
+    "version": "1.0.0",
+    "type" : "symfony-bundle",
+    "authors" : [{
+        "name" : "Joseph Zhao",
+        "email" : "zhaoshuilin2004@yahoo.ca"
+    }],
+    "keywords" : [
+        "Map2u Forum Bundle,Symfony 2"
+    ],
+    "license" : [
+        "MIT"
+    ],
+    "require" : {
+    },
+    "autoload" : {
+        "psr-0" : {
+            "Map2u\\ForumBundle" : ""
+        }
+    },
+    "target-dir" : "Map2u/ForumBundle",
+    "repositories" : [{}
+    ],
+    "extra" : {
+    "branch-alias" : {
+            "dev-master" : "2.4-dev"
+        }
+    }
+}
