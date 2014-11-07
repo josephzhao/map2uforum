@@ -10,6 +10,13 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class TopicAdmin extends Admin
 {
+     private $container = null;
+
+    public function __construct($code, $class, $baseControllerName, $container = null) {
+        parent::__construct($code, $class, $baseControllerName);
+        $this->container = $container;
+    }
+
     /**
      * @param DatagridMapper $datagridMapper
      */

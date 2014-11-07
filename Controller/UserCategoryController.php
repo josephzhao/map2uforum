@@ -41,10 +41,11 @@ class UserCategoryController extends BaseController
     public function indexAction($forumName)
     {
 
+       
         if ($forumName != 'default') {
             $this->isFound($forum = $this->getForumModel()->findOneForumByName($forumName));
             $this->isAuthorised($this->getAuthorizer()->canShowForum($forum));
-            echo "234<br>";
+           
             if($forum==null) {
                
                 $forum = $this->getForumModel()->findOneForumByName($forumName);
@@ -62,7 +63,7 @@ class UserCategoryController extends BaseController
             'forum' => $forum,
             'forumName' => $forumName,
             'categories' => $categories,
-            'topics_per_page' => $this->container->getParameter('ccdn_forum_forum.board.user.show.topics_per_page'),
+            'topics_per_page' => $this->container->getParameter('map2u_forum.board.user.show.topics_per_page'),
         ));
     }
 
@@ -85,7 +86,7 @@ class UserCategoryController extends BaseController
             'forumName' => $forumName,
             'category' => $category,
             'categories' => array($category),
-            'topics_per_page' => $this->container->getParameter('ccdn_forum_forum.board.user.show.topics_per_page'),
+            'topics_per_page' => $this->container->getParameter('map2u_forum.board.user.show.topics_per_page'),
         ));
     }
 }

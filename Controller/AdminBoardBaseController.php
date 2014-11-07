@@ -35,7 +35,7 @@ class AdminBoardBaseController extends BaseController
      */
     protected function getFormHandlerToCreateBoard($categoryFilter = null)
     {
-        $formHandler = $this->container->get('ccdn_forum_forum.form.handler.board_create');
+        $formHandler = $this->container->get('map2u_forum.form.handler.board_create');
 
         $formHandler->setRequest($this->getRequest());
 
@@ -57,7 +57,7 @@ class AdminBoardBaseController extends BaseController
      */
     protected function getFormHandlerToUpdateBoard(Board $board)
     {
-        $formHandler = $this->container->get('ccdn_forum_forum.form.handler.board_update');
+        $formHandler = $this->container->get('map2u_forum.form.handler.board_update');
 
         $formHandler->setRequest($this->getRequest());
 
@@ -73,7 +73,7 @@ class AdminBoardBaseController extends BaseController
      */
     protected function getFormHandlerToDeleteBoard(Board $board)
     {
-        $formHandler = $this->container->get('ccdn_forum_forum.form.handler.board_delete');
+        $formHandler = $this->container->get('map2u_forum.form.handler.board_delete');
 
         $formHandler->setRequest($this->getRequest());
 

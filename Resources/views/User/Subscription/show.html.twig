@@ -1,0 +1,102 @@
+{% extends 'Map2uForumBundle:Common:Layout/base.html.twig' %}
+
+{% set LayoutTemplate = map2u_forum.subscription.list.layout_template %}
+
+{%- block title -%}
+	{{- 'title.subscription.index' | trans({}, 'Map2uForumBundle') -}}
+{%- endblock title -%}
+
+{%- block sidebar -%}
+	{%- spaceless -%}
+	{{- parent() -}}
+    {%- include 'Map2uForumBundle:Common:Layout/Sidebar/user_subscriptions.html.twig' -%}
+	{%- endspaceless -%}
+{%- endblock sidebar -%}
+
+{%- macro subscription_tab(label, forum_name, filter_key, filter_value, count_read, count_unread, count_total) -%}
+	{% if filter_key == filter_value -%}
+		<li class="active">
+	{%- else -%}
+		<li>
+	{%- endif -%}
+		<a href="{{- path('ccdn_forum_user_subscription_index', {'forumName': forum_name, 'filter': filter_key}) -}}">
+			{{- label -}}
+
+			&nbsp;
+
+			<span class="badge">
+				{%- if count_unread is not null and count_total is not null -%}
+					{{- count_unread -}}
+					&nbsp;/&nbsp;
+					{{- count_total -}}
+				{%- else -%}
+					{%- if count_unread is not null -%}
+						{{- count_unread -}}
+					{%- endif -%}
+
+					{%- if count_read is not null -%}
+						{{- count_read -}}
+					{%- endif -%}
+				{%- endif -%}
+			</span>
+		</a>
+	</li>
+{%- endmacro -%}
+
+
+{%- block body_content -%}
+	{%- spaceless -%}
+
+	<section class="row clearfix">
+		<div class="col-md-12">
+			<ul class="nav nav-tabs">
+				{%- import _self as tabs -%}
+				{%- if forum is not null -%}
+					{{- tabs.subscription_tab('subscription.all'|trans({}, 'Map2uForumBundle'), forumName, 'all', filter, total_subscribed_forums['count_read'], total_subscribed_forums['count_unread'], total_subscribed_forums['count_total']) -}}
+					{{- tabs.subscription_tab('subscription.unread'|trans({}, 'Map2uForumBundle'), forumName, 'unread', filter, null, total_subscribed_forums['count_unread'], null) -}}
+					{{- tabs.subscription_tab('subscription.read'|trans({}, 'Map2uForumBundle'), forumName, 'read', filter, total_subscribed_forums['count_read'], null, null) -}}
+				{%- else -%}
+					{{- tabs.subscription_tab('subscription.all'|trans({}, 'Map2uForumBundle'), '~', 'all', filter, total_subscribed_forums['count_read'], total_subscribed_forums['count_unread'], total_subscribed_forums['count_total']) -}}
+					{{- tabs.subscription_tab('subscription.unread'|trans({}, 'Map2uForumBundle'), '~', 'unread', filter, null, total_subscribed_forums['count_unread'], null) -}}
+					{{- tabs.subscription_tab('subscription.read'|trans({}, 'Map2uForumBundle'), '~', 'read', filter, total_subscribed_forums['count_read'], null, null) -}}
+				{%- endif -%}
+			</ul>
+		</div>
+	</section>
+
+	{{- knp_pagination_render(pager) -}}
+
+	<section class="clearfix">
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th class="center" style="width:18px;"></th>
+					<th class="center" style="width:18px;"></th>
+					<th class="left">{{- 'board.topic-th' | trans({}, 'Map2uForumBundle') -}}</th>
+					<th class="center" style="width: 100px;">{{- 'board.reply-count-th' | trans({}, 'Map2uForumBundle') -}}</th>
+					<th class="center" style="width: 100px;">{{- 'board.view-count-th' | trans({}, 'Map2uForumBundle') -}}</th>
+					<th class="center" style="width: 170px;">{{- 'board.last-post-th' | trans({}, 'Map2uForumBundle') -}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{%- for row, subscription in pager.getItems() -%}
+					{%- set topic = subscription.getTopic -%}
+
+					{%- include 'Map2uForumBundle:User:Subscription/Partial/item_topic_list.html.twig' -%}
+				{%- else -%}
+					<tr>
+						<td class="text-center" colspan="6">
+							<span class="lead">
+								{{- 'subscription.no-topics' | trans({}, 'Map2uForumBundle') -}}
+							</span>
+						</td>
+					</tr>
+				{%- endfor -%}
+			</tbody>
+		</table>
+	</section>
+
+	{{- knp_pagination_render(pager) -}}
+
+	{%- endspaceless -%}
+{%- endblock body_content -%}

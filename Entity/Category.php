@@ -2,13 +2,15 @@
 
 namespace Map2u\ForumBundle\Entity;
 
+use Map2u\ForumBundle\Entity\Model\Category as AbstractCategory;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Category
  */
-class Category
-{
+class Category extends AbstractCategory {
+
     /**
      * @var integer
      */
@@ -32,19 +34,19 @@ class Category
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $boards;
+    protected $boards;
 
     /**
      * @var \Map2u\ForumBundle\Entity\Forum
      */
-    private $forum;
+    protected $forum;
 
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->boards = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->readAuthorisedRoles = array();
     }
 
     /**
@@ -52,9 +54,19 @@ class Category
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
+    }
+
+    /**
+     * set id
+     *
+     * @param integer $id
+     *   @return Category
+     */
+    public function setId($id) {
+        $this->id = $id;
+        return $this;
     }
 
     /**
@@ -63,8 +75,7 @@ class Category
      * @param string $name
      * @return Category
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -75,8 +86,7 @@ class Category
      *
      * @return string 
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -86,8 +96,7 @@ class Category
      * @param integer $listOrderPriority
      * @return Category
      */
-    public function setListOrderPriority($listOrderPriority)
-    {
+    public function setListOrderPriority($listOrderPriority) {
         $this->listOrderPriority = $listOrderPriority;
 
         return $this;
@@ -98,8 +107,7 @@ class Category
      *
      * @return integer 
      */
-    public function getListOrderPriority()
-    {
+    public function getListOrderPriority() {
         return $this->listOrderPriority;
     }
 
@@ -109,8 +117,7 @@ class Category
      * @param array $readAuthorisedRoles
      * @return Category
      */
-    public function setReadAuthorisedRoles($readAuthorisedRoles)
-    {
+    public function setReadAuthorisedRoles($readAuthorisedRoles) {
         $this->readAuthorisedRoles = $readAuthorisedRoles;
 
         return $this;
@@ -121,8 +128,7 @@ class Category
      *
      * @return array 
      */
-    public function getReadAuthorisedRoles()
-    {
+    public function getReadAuthorisedRoles() {
         return $this->readAuthorisedRoles;
     }
 
@@ -132,8 +138,7 @@ class Category
      * @param \Map2u\ForumBundle\Entity\Board $boards
      * @return Category
      */
-    public function addBoard(\Map2u\ForumBundle\Entity\Board $boards)
-    {
+    public function addBoard(\Map2u\ForumBundle\Entity\Board $boards) {
         $this->boards[] = $boards;
 
         return $this;
@@ -144,8 +149,7 @@ class Category
      *
      * @param \Map2u\ForumBundle\Entity\Board $boards
      */
-    public function removeBoard(\Map2u\ForumBundle\Entity\Board $boards)
-    {
+    public function removeBoard(\Map2u\ForumBundle\Entity\Board $boards) {
         $this->boards->removeElement($boards);
     }
 
@@ -154,8 +158,7 @@ class Category
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getBoards()
-    {
+    public function getBoards() {
         return $this->boards;
     }
 
@@ -165,8 +168,7 @@ class Category
      * @param \Map2u\ForumBundle\Entity\Forum $forum
      * @return Category
      */
-    public function setForum(\Map2u\ForumBundle\Entity\Forum $forum = null)
-    {
+    public function setForum(\Map2u\ForumBundle\Entity\Forum $forum = null) {
         $this->forum = $forum;
 
         return $this;
@@ -177,8 +179,48 @@ class Category
      *
      * @return \Map2u\ForumBundle\Entity\Forum 
      */
-    public function getForum()
-    {
+    public function getForum() {
         return $this->forum;
     }
+
+    /**
+     *
+     * @param $role
+     * @return bool
+     */
+    public function hasReadAuthorisedRole($role) {
+        return in_array($role, $this->readAuthorisedRoles);
+    }
+
+    /**
+     *
+     * @param  SecurityContextInterface $securityContext
+     * @return bool
+     */
+    public function isAuthorisedToRead(SecurityContextInterface $securityContext) {
+        if (0 == count($this->readAuthorisedRoles)) {
+            return true;
+        }
+
+        foreach ($this->readAuthorisedRoles as $role) {
+            if ($securityContext->isGranted($role)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function __toString() {
+        return $this->name;
+    }
+
+    public function forumName() {
+        if ($this->getForum()) {
+            return $this->getForum()->getName();
+        }
+
+        return 'Unassigned';
+    }
+
 }

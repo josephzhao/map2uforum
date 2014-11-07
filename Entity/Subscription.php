@@ -3,50 +3,58 @@
 namespace Map2u\ForumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Map2u\ForumBundle\Entity\Model\Subscription as AbstractSubscription;
 
 /**
  * Subscription
  */
-class Subscription
-{
+class Subscription extends AbstractSubscription {
+
     /**
      * @var integer
      */
-    private $id;
+    protected $id;
 
     /**
      * @var boolean
      */
-    private $isRead;
+    protected $isRead;
 
     /**
      * @var boolean
      */
-    private $isSubscribed;
+    protected $isSubscribed;
 
     /**
      * @var \Map2u\ForumBundle\Entity\Forum
      */
-    private $forum;
+    protected $forum;
 
     /**
      * @var \Map2u\ForumBundle\Entity\Topic
      */
-    private $topic;
+    protected $topic;
 
     /**
      * @var \Application\Sonata\UserBundle\Entity\User
      */
-    private $ownedBy;
+    protected $ownedBy;
 
+    /**
+     *
+     * @access public
+     */
+    public function __construct() {
+        parent::__construct();
+        // your own logic
+    }
 
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -56,8 +64,7 @@ class Subscription
      * @param boolean $isRead
      * @return Subscription
      */
-    public function setIsRead($isRead)
-    {
+    public function setIsRead($isRead) {
         $this->isRead = $isRead;
 
         return $this;
@@ -68,9 +75,29 @@ class Subscription
      *
      * @return boolean 
      */
-    public function getIsRead()
-    {
+    public function getIsRead() {
         return $this->isRead;
+    }
+
+    /**
+     * Get isRead
+     *
+     * @return boolean
+     */
+    public function isRead() {
+        return $this->isRead;
+    }
+
+    /**
+     * Set isRead
+     *
+     * @param  boolean      $isRead
+     * @return Subscription
+     */
+    public function setRead($isRead) {
+        $this->isRead = $isRead;
+
+        return $this;
     }
 
     /**
@@ -79,8 +106,7 @@ class Subscription
      * @param boolean $isSubscribed
      * @return Subscription
      */
-    public function setIsSubscribed($isSubscribed)
-    {
+    public function setIsSubscribed($isSubscribed) {
         $this->isSubscribed = $isSubscribed;
 
         return $this;
@@ -91,8 +117,7 @@ class Subscription
      *
      * @return boolean 
      */
-    public function getIsSubscribed()
-    {
+    public function getIsSubscribed() {
         return $this->isSubscribed;
     }
 
@@ -102,8 +127,7 @@ class Subscription
      * @param \Map2u\ForumBundle\Entity\Forum $forum
      * @return Subscription
      */
-    public function setForum(\Map2u\ForumBundle\Entity\Forum $forum = null)
-    {
+    public function setForum(\Map2u\ForumBundle\Entity\Forum $forum = null) {
         $this->forum = $forum;
 
         return $this;
@@ -114,8 +138,7 @@ class Subscription
      *
      * @return \Map2u\ForumBundle\Entity\Forum 
      */
-    public function getForum()
-    {
+    public function getForum() {
         return $this->forum;
     }
 
@@ -125,8 +148,7 @@ class Subscription
      * @param \Map2u\ForumBundle\Entity\Topic $topic
      * @return Subscription
      */
-    public function setTopic(\Map2u\ForumBundle\Entity\Topic $topic = null)
-    {
+    public function setTopic(\Map2u\ForumBundle\Entity\Topic $topic = null) {
         $this->topic = $topic;
 
         return $this;
@@ -137,31 +159,50 @@ class Subscription
      *
      * @return \Map2u\ForumBundle\Entity\Topic 
      */
-    public function getTopic()
-    {
+    public function getTopic() {
         return $this->topic;
     }
 
-    /**
-     * Set ownedBy
-     *
-     * @param \Application\Sonata\UserBundle\Entity\User $ownedBy
-     * @return Subscription
-     */
-    public function setOwnedBy(\Application\Sonata\UserBundle\Entity\User $ownedBy = null)
-    {
-        $this->ownedBy = $ownedBy;
-
-        return $this;
-    }
+//    /**
+//     * Set ownedBy
+//     *
+//     * @param \Application\Sonata\UserBundle\Entity\User $ownedBy
+//     * @return Subscription
+//     */
+//    public function setOwnedBy(\Application\Sonata\UserBundle\Entity\User $ownedBy = null) {
+//        $this->ownedBy = $ownedBy;
+//
+//        return $this;
+//    }
 
     /**
      * Get ownedBy
      *
      * @return \Application\Sonata\UserBundle\Entity\User 
      */
-    public function getOwnedBy()
-    {
+    public function getOwnedBy() {
         return $this->ownedBy;
     }
+
+    /**
+     * Get isSubscribed
+     *
+     * @return boolean
+     */
+    public function isSubscribed() {
+        return $this->isSubscribed;
+    }
+
+    /**
+     * Set isSubscribed
+     *
+     * @param  boolean      $isSubscribed
+     * @return Subscription
+     */
+    public function setSubscribed($isSubscribed) {
+        $this->isSubscribed = $isSubscribed;
+
+        return $this;
+    }
+
 }

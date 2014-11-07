@@ -49,7 +49,7 @@ class FrequentlyAskedQuestionsAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
+            ->add('id','hidden')
             ->add('question')
             ->add('enabled')
             ->add('description')

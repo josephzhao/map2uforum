@@ -2,13 +2,15 @@
 
 namespace Map2u\ForumBundle\Entity;
 
+use Map2u\ForumBundle\Entity\Model\Board as AbstractBoard;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Board
  */
-class Board
-{
+class Board extends AbstractBoard {
+
     /**
      * @var integer
      */
@@ -27,12 +29,12 @@ class Board
     /**
      * @var integer
      */
-    private $cachedTopicCount;
+    private $cachedTopicCount = 0;
 
     /**
      * @var integer
      */
-    private $cachedPostCount;
+    private $cachedPostCount = 0;
 
     /**
      * @var integer
@@ -57,24 +59,26 @@ class Board
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $topics;
+    protected $topics;
 
     /**
      * @var \Map2u\ForumBundle\Entity\Category
      */
-    private $category;
+    protected $category;
 
     /**
      * @var \Map2u\ForumBundle\Entity\Post
      */
-    private $lastPost;
+    protected $lastPost;
 
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->topics = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->readAuthorisedRoles = array();
+        $this->topicCreateAuthorisedRoles = array();
+        $this->topicReplyAuthorisedRoles = array();
     }
 
     /**
@@ -82,9 +86,19 @@ class Board
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
+    }
+
+    /**
+     * set id
+     *
+     * @param integer $id
+     *   @return Board
+     */
+    public function setId($id) {
+        $this->id = $id;
+        return $this;
     }
 
     /**
@@ -93,8 +107,7 @@ class Board
      * @param string $name
      * @return Board
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -105,8 +118,7 @@ class Board
      *
      * @return string 
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -116,8 +128,7 @@ class Board
      * @param string $description
      * @return Board
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
 
         return $this;
@@ -128,8 +139,7 @@ class Board
      *
      * @return string 
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
@@ -139,8 +149,7 @@ class Board
      * @param integer $cachedTopicCount
      * @return Board
      */
-    public function setCachedTopicCount($cachedTopicCount)
-    {
+    public function setCachedTopicCount($cachedTopicCount) {
         $this->cachedTopicCount = $cachedTopicCount;
 
         return $this;
@@ -151,8 +160,7 @@ class Board
      *
      * @return integer 
      */
-    public function getCachedTopicCount()
-    {
+    public function getCachedTopicCount() {
         return $this->cachedTopicCount;
     }
 
@@ -162,8 +170,7 @@ class Board
      * @param integer $cachedPostCount
      * @return Board
      */
-    public function setCachedPostCount($cachedPostCount)
-    {
+    public function setCachedPostCount($cachedPostCount) {
         $this->cachedPostCount = $cachedPostCount;
 
         return $this;
@@ -174,8 +181,7 @@ class Board
      *
      * @return integer 
      */
-    public function getCachedPostCount()
-    {
+    public function getCachedPostCount() {
         return $this->cachedPostCount;
     }
 
@@ -185,8 +191,7 @@ class Board
      * @param integer $listOrderPriority
      * @return Board
      */
-    public function setListOrderPriority($listOrderPriority)
-    {
+    public function setListOrderPriority($listOrderPriority) {
         $this->listOrderPriority = $listOrderPriority;
 
         return $this;
@@ -197,8 +202,7 @@ class Board
      *
      * @return integer 
      */
-    public function getListOrderPriority()
-    {
+    public function getListOrderPriority() {
         return $this->listOrderPriority;
     }
 
@@ -208,8 +212,7 @@ class Board
      * @param array $readAuthorisedRoles
      * @return Board
      */
-    public function setReadAuthorisedRoles($readAuthorisedRoles)
-    {
+    public function setReadAuthorisedRoles($readAuthorisedRoles) {
         $this->readAuthorisedRoles = $readAuthorisedRoles;
 
         return $this;
@@ -220,8 +223,7 @@ class Board
      *
      * @return array 
      */
-    public function getReadAuthorisedRoles()
-    {
+    public function getReadAuthorisedRoles() {
         return $this->readAuthorisedRoles;
     }
 
@@ -231,8 +233,7 @@ class Board
      * @param array $topicCreateAuthorisedRoles
      * @return Board
      */
-    public function setTopicCreateAuthorisedRoles($topicCreateAuthorisedRoles)
-    {
+    public function setTopicCreateAuthorisedRoles($topicCreateAuthorisedRoles) {
         $this->topicCreateAuthorisedRoles = $topicCreateAuthorisedRoles;
 
         return $this;
@@ -243,8 +244,7 @@ class Board
      *
      * @return array 
      */
-    public function getTopicCreateAuthorisedRoles()
-    {
+    public function getTopicCreateAuthorisedRoles() {
         return $this->topicCreateAuthorisedRoles;
     }
 
@@ -254,8 +254,7 @@ class Board
      * @param array $topicReplyAuthorisedRoles
      * @return Board
      */
-    public function setTopicReplyAuthorisedRoles($topicReplyAuthorisedRoles)
-    {
+    public function setTopicReplyAuthorisedRoles($topicReplyAuthorisedRoles) {
         $this->topicReplyAuthorisedRoles = $topicReplyAuthorisedRoles;
 
         return $this;
@@ -266,8 +265,7 @@ class Board
      *
      * @return array 
      */
-    public function getTopicReplyAuthorisedRoles()
-    {
+    public function getTopicReplyAuthorisedRoles() {
         return $this->topicReplyAuthorisedRoles;
     }
 
@@ -277,8 +275,7 @@ class Board
      * @param \Map2u\ForumBundle\Entity\Topic $topics
      * @return Board
      */
-    public function addTopic(\Map2u\ForumBundle\Entity\Topic $topics)
-    {
+    public function addTopic(\Map2u\ForumBundle\Entity\Topic $topics) {
         $this->topics[] = $topics;
 
         return $this;
@@ -289,8 +286,7 @@ class Board
      *
      * @param \Map2u\ForumBundle\Entity\Topic $topics
      */
-    public function removeTopic(\Map2u\ForumBundle\Entity\Topic $topics)
-    {
+    public function removeTopic(\Map2u\ForumBundle\Entity\Topic $topics) {
         $this->topics->removeElement($topics);
     }
 
@@ -299,8 +295,7 @@ class Board
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getTopics()
-    {
+    public function getTopics() {
         return $this->topics;
     }
 
@@ -310,8 +305,7 @@ class Board
      * @param \Map2u\ForumBundle\Entity\Category $category
      * @return Board
      */
-    public function setCategory(\Map2u\ForumBundle\Entity\Category $category = null)
-    {
+    public function setCategory(\Map2u\ForumBundle\Entity\Category $category = null) {
         $this->category = $category;
 
         return $this;
@@ -322,8 +316,7 @@ class Board
      *
      * @return \Map2u\ForumBundle\Entity\Category 
      */
-    public function getCategory()
-    {
+    public function getCategory() {
         return $this->category;
     }
 
@@ -333,8 +326,7 @@ class Board
      * @param \Map2u\ForumBundle\Entity\Post $lastPost
      * @return Board
      */
-    public function setLastPost(\Map2u\ForumBundle\Entity\Post $lastPost = null)
-    {
+    public function setLastPost(\Map2u\ForumBundle\Entity\Post $lastPost = null) {
         $this->lastPost = $lastPost;
 
         return $this;
@@ -345,8 +337,96 @@ class Board
      *
      * @return \Map2u\ForumBundle\Entity\Post 
      */
-    public function getLastPost()
-    {
+    public function getLastPost() {
         return $this->lastPost;
     }
+
+    /**
+     * @param $role
+     *
+     * @return bool
+     */
+    public function hasReadAuthorisedRole($role) {
+        return in_array($role, $this->readAuthorisedRoles);
+    }
+
+    /**
+     * @param SecurityContextInterface $securityContext
+     *
+     * @return bool
+     */
+    public function isAuthorisedToRead(SecurityContextInterface $securityContext) {
+        if (0 == count($this->readAuthorisedRoles)) {
+            return true;
+        }
+
+        foreach ($this->readAuthorisedRoles as $role) {
+            if ($securityContext->isGranted($role)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $role
+     *
+     * @return bool
+     */
+    public function hasTopicCreateAuthorisedRole($role) {
+        return in_array($role, $this->topicCreateAuthorisedRoles);
+    }
+
+    /**
+     * @param SecurityContextInterface $securityContext
+     *
+     * @return bool
+     */
+    public function isAuthorisedToCreateTopic(SecurityContextInterface $securityContext) {
+        if (0 == count($this->topicCreateAuthorisedRoles)) {
+            return true;
+        }
+
+        foreach ($this->topicCreateAuthorisedRoles as $role) {
+            if ($securityContext->isGranted($role)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $role
+     *
+     * @return bool
+     */
+    public function hasTopicReplyAuthorisedRole($role) {
+        return in_array($role, $this->topicReplyAuthorisedRoles);
+    }
+
+    /**
+     * @param SecurityContextInterface $securityContext
+     *
+     * @return bool
+     */
+    public function isAuthorisedToReplyToTopic(SecurityContextInterface $securityContext) {
+        if (0 == count($this->topicReplyAuthorisedRoles)) {
+            return true;
+        }
+
+        foreach ($this->topicReplyAuthorisedRoles as $role) {
+            if ($securityContext->isGranted($role)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function __toString() {
+        return $this->name;
+    }
+
 }

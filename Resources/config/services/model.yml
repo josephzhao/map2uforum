@@ -8,51 +8,51 @@ services:
     # Models.
     #
 
-    ccdn_forum_forum.model.forum:
-        class: %ccdn_forum_forum.model.forum.class%
+    map2u_forum.model.forum:
+        class: %map2u_forum.model.forum.class%
         arguments:
             - @event_dispatcher
-            - @ccdn_forum_forum.repository.forum
-            - @ccdn_forum_forum.manager.forum
+            - @map2u_forum.repository.forum
+            - @map2u_forum.manager.forum
 
-    ccdn_forum_forum.model.category:
-        class: %ccdn_forum_forum.model.category.class%
+    map2u_forum.model.category:
+        class: %map2u_forum.model.category.class%
         arguments:
             - @event_dispatcher
-            - @ccdn_forum_forum.repository.category
-            - @ccdn_forum_forum.manager.category
+            - @map2u_forum.repository.category
+            - @map2u_forum.manager.category
 
-    ccdn_forum_forum.model.board:
-        class: %ccdn_forum_forum.model.board.class%
+    map2u_forum.model.board:
+        class: %map2u_forum.model.board.class%
         arguments:
             - @event_dispatcher
-            - @ccdn_forum_forum.repository.board
-            - @ccdn_forum_forum.manager.board
+            - @map2u_forum.repository.board
+            - @map2u_forum.manager.board
 
-    ccdn_forum_forum.model.topic:
-        class: %ccdn_forum_forum.model.topic.class%
+    map2u_forum.model.topic:
+        class: %map2u_forum.model.topic.class%
         arguments:
             - @event_dispatcher
-            - @ccdn_forum_forum.repository.topic
-            - @ccdn_forum_forum.manager.topic
+            - @map2u_forum.repository.topic
+            - @map2u_forum.manager.topic
 
-    ccdn_forum_forum.model.post:
-        class: %ccdn_forum_forum.model.post.class%
+    map2u_forum.model.post:
+        class: %map2u_forum.model.post.class%
         arguments:
             - @event_dispatcher
-            - @ccdn_forum_forum.repository.post
-            - @ccdn_forum_forum.manager.post
+            - @map2u_forum.repository.post
+            - @map2u_forum.manager.post
 
-    ccdn_forum_forum.model.registry:
-        class: %ccdn_forum_forum.model.registry.class%
+    map2u_forum.model.registry:
+        class: %map2u_forum.model.registry.class%
         arguments:
             - @event_dispatcher
-            - @ccdn_forum_forum.repository.registry
-            - @ccdn_forum_forum.manager.registry
+            - @map2u_forum.repository.registry
+            - @map2u_forum.manager.registry
 
-    ccdn_forum_forum.model.subscription:
-        class: %ccdn_forum_forum.model.subscription.class%
+    map2u_forum.model.subscription:
+        class: %map2u_forum.model.subscription.class%
         arguments:
             - @event_dispatcher
-            - @ccdn_forum_forum.repository.subscription
-            - @ccdn_forum_forum.manager.subscription
+            - @map2u_forum.repository.subscription
+            - @map2u_forum.manager.subscription

@@ -7,45 +7,45 @@ services:
     #
     # Category Forms.
     #
-    ccdn_forum_forum.form.type.category_create:
-        class: %ccdn_forum_forum.form.type.category_create.class%
+    map2u_forum.form.type.category_create:
+        class: %map2u_forum.form.type.category_create.class%
         arguments:
-            - %ccdn_forum_forum.entity.category.class%
-            - %ccdn_forum_forum.entity.forum.class%
-            - @ccdn_forum_forum.component.helper.role
+            - %map2u_forum.entity.category.class%
+            - %map2u_forum.entity.forum.class%
+            - @map2u_forum.component.helper.role
 
-    ccdn_forum_forum.form.handler.category_create:
-        class: %ccdn_forum_forum.form.handler.category_create.class%
+    map2u_forum.form.handler.category_create:
+        class: %map2u_forum.form.handler.category_create.class%
         arguments:
             - @event_dispatcher
             - @form.factory
-            - @ccdn_forum_forum.form.type.category_create
-            - @ccdn_forum_forum.model.category
+            - @map2u_forum.form.type.category_create
+            - @map2u_forum.model.category
 
-    ccdn_forum_forum.form.type.category_update:
-        class: %ccdn_forum_forum.form.type.category_update.class%
+    map2u_forum.form.type.category_update:
+        class: %map2u_forum.form.type.category_update.class%
         arguments:
-            - %ccdn_forum_forum.entity.category.class%
-            - %ccdn_forum_forum.entity.forum.class%
-            - @ccdn_forum_forum.component.helper.role
+            - %map2u_forum.entity.category.class%
+            - %map2u_forum.entity.forum.class%
+            - @map2u_forum.component.helper.role
 
-    ccdn_forum_forum.form.handler.category_update:
-        class: %ccdn_forum_forum.form.handler.category_update.class%
-        arguments:
-            - @event_dispatcher
-            - @form.factory
-            - @ccdn_forum_forum.form.type.category_update
-            - @ccdn_forum_forum.model.category
-
-    ccdn_forum_forum.form.type.category_delete:
-        class: %ccdn_forum_forum.form.type.category_delete.class%
-        arguments:
-            - %ccdn_forum_forum.entity.category.class%
-
-    ccdn_forum_forum.form.handler.category_delete:
-        class: %ccdn_forum_forum.form.handler.category_delete.class%
+    map2u_forum.form.handler.category_update:
+        class: %map2u_forum.form.handler.category_update.class%
         arguments:
             - @event_dispatcher
             - @form.factory
-            - @ccdn_forum_forum.form.type.category_delete
-            - @ccdn_forum_forum.model.category
+            - @map2u_forum.form.type.category_update
+            - @map2u_forum.model.category
+
+    map2u_forum.form.type.category_delete:
+        class: %map2u_forum.form.type.category_delete.class%
+        arguments:
+            - %map2u_forum.entity.category.class%
+
+    map2u_forum.form.handler.category_delete:
+        class: %map2u_forum.form.handler.category_delete.class%
+        arguments:
+            - @event_dispatcher
+            - @form.factory
+            - @map2u_forum.form.type.category_delete
+            - @map2u_forum.model.category

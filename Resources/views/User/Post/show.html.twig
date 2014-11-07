@@ -1,0 +1,38 @@
+{% extends 'Map2uForumBundle:Common:Layout/base.html.twig' %}
+
+{% set LayoutTemplate = map2u_forum.post.user.show.layout_template %}
+
+{%- block title -%}
+	{{- 'title.post.show' | trans({'%post_id%': post.getId}, 'Map2uForumBundle') -}}
+{%- endblock title -%}
+
+{%- block sidebar -%}
+	{%- spaceless -%}
+	{{- parent() -}}
+    {%- include 'Map2uForumBundle:Common:Layout/Sidebar/user_forum.html.twig' -%}
+	{%- endspaceless -%}
+{%- endblock sidebar -%}
+
+{%- block body_content -%}
+	{%- spaceless -%}
+
+	<section class="row btn-toolbar clearfix">
+        <div class="col-md-6">
+            {%- include 'Map2uForumBundle:User:Topic/Partial/topic_actions.html.twig' -%}
+        </div>
+	</section>
+
+	{%- include "Map2uForumBundle:User:Topic/Partial/stat_vitals.html.twig" -%}
+
+	{%- if topic.isDeleted or topic.isClosed or topic.isSticky -%}
+		{%- include "Map2uForumBundle:User:Topic/Partial/stat_mods.html.twig" -%}
+	{%- endif -%}
+
+	<br>
+
+	<section class="row clearfix">
+		{%- include "Map2uForumBundle:User:Post/Partial/item_post.html.twig" -%}
+	</section>
+
+	{%- endspaceless -%}
+{%- endblock body_content -%}

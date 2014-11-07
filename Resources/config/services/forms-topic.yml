@@ -7,62 +7,62 @@ services:
     #
     # Topic Forms.
     #
-    ccdn_forum_forum.form.type.topic_create:
-        class: %ccdn_forum_forum.form.type.topic_create.class%
+    map2u_forum.form.type.topic_create:
+        class: %map2u_forum.form.type.topic_create.class%
         arguments:
-            - %ccdn_forum_forum.entity.topic.class%
+            - %map2u_forum.entity.topic.class%
 
-    ccdn_forum_forum.form.handler.topic_create:
-        class: %ccdn_forum_forum.form.handler.topic_create.class%
+    map2u_forum.form.handler.topic_create:
+        class: %map2u_forum.form.handler.topic_create.class%
         arguments:
             - @event_dispatcher
             - @form.factory
-            - @ccdn_forum_forum.form.type.topic_create
-            - @ccdn_forum_forum.form.type.post_create
-            - @ccdn_forum_forum.model.topic
-            - @ccdn_forum_forum.model.post
-            - @ccdn_forum_forum.model.board
-            - @ccdn_forum_forum.component.flood_control
+            - @map2u_forum.form.type.topic_create
+            - @map2u_forum.form.type.post_create
+            - @map2u_forum.model.topic
+            - @map2u_forum.model.post
+            - @map2u_forum.model.board
+            - @map2u_forum.component.flood_control
 
-    ccdn_forum_forum.form.type.topic_update:
-        class: %ccdn_forum_forum.form.type.topic_update.class%
+    map2u_forum.form.type.topic_update:
+        class: %map2u_forum.form.type.topic_update.class%
         arguments:
-            - %ccdn_forum_forum.entity.topic.class%
+            - %map2u_forum.entity.topic.class%
 
-    ccdn_forum_forum.form.handler.topic_update:
-        class: %ccdn_forum_forum.form.handler.topic_update.class%
-        arguments:
-            - @event_dispatcher
-            - @form.factory
-            - @ccdn_forum_forum.form.type.topic_update
-            - @ccdn_forum_forum.form.type.post_update
-            - @ccdn_forum_forum.model.topic
-            - @ccdn_forum_forum.model.post
-
-    ccdn_forum_forum.form.type.change_topics_board:
-        class: %ccdn_forum_forum.form.type.change_topics_board.class%
-        arguments:
-            - %ccdn_forum_forum.entity.topic.class%
-            - %ccdn_forum_forum.entity.board.class%
-
-    ccdn_forum_forum.form.handler.change_topics_board:
-        class: %ccdn_forum_forum.form.handler.change_topics_board.class%
+    map2u_forum.form.handler.topic_update:
+        class: %map2u_forum.form.handler.topic_update.class%
         arguments:
             - @event_dispatcher
             - @form.factory
-            - @ccdn_forum_forum.form.type.change_topics_board
-            - @ccdn_forum_forum.model.topic
-            - @ccdn_forum_forum.model.board
+            - @map2u_forum.form.type.topic_update
+            - @map2u_forum.form.type.post_update
+            - @map2u_forum.model.topic
+            - @map2u_forum.model.post
 
-    ccdn_forum_forum.form.type.topic_delete:
-        class: %ccdn_forum_forum.form.type.topic_delete.class%
+    map2u_forum.form.type.change_topics_board:
+        class: %map2u_forum.form.type.change_topics_board.class%
         arguments:
-            - %ccdn_forum_forum.entity.topic.class%
+            - %map2u_forum.entity.topic.class%
+            - %map2u_forum.entity.board.class%
 
-    ccdn_forum_forum.form.handler.topic_delete:
-        class: %ccdn_forum_forum.form.handler.topic_delete.class%
+    map2u_forum.form.handler.change_topics_board:
+        class: %map2u_forum.form.handler.change_topics_board.class%
         arguments:
             - @event_dispatcher
             - @form.factory
-            - @ccdn_forum_forum.form.type.topic_delete
-            - @ccdn_forum_forum.model.topic
+            - @map2u_forum.form.type.change_topics_board
+            - @map2u_forum.model.topic
+            - @map2u_forum.model.board
+
+    map2u_forum.form.type.topic_delete:
+        class: %map2u_forum.form.type.topic_delete.class%
+        arguments:
+            - %map2u_forum.entity.topic.class%
+
+    map2u_forum.form.handler.topic_delete:
+        class: %map2u_forum.form.handler.topic_delete.class%
+        arguments:
+            - @event_dispatcher
+            - @form.factory
+            - @map2u_forum.form.type.topic_delete
+            - @map2u_forum.model.topic

@@ -39,8 +39,8 @@ class UserTopicBaseController extends BaseController
      */
     protected function getFormHandlerToCreateTopic(Forum $forum, Board $board)
     {
-        $formHandler = $this->container->get('ccdn_forum_forum.form.handler.topic_create');
-
+        $formHandler = $this->container->get('map2u_forum.form.handler.topic_create');
+       
         $formHandler->setForum($forum);
         $formHandler->setBoard($board);
         $formHandler->setUser($this->getUser());
@@ -57,7 +57,7 @@ class UserTopicBaseController extends BaseController
      */
     protected function getFormHandlerToReplyToTopic(Topic $topic)
     {
-        $formHandler = $this->container->get('ccdn_forum_forum.form.handler.post_create');
+        $formHandler = $this->container->get('map2u_forum.form.handler.post_create');
 
         $formHandler->setTopic($topic);
         $formHandler->setUser($this->getUser());

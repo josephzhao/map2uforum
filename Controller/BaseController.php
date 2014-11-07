@@ -247,7 +247,7 @@ class BaseController extends ContainerAware
      */
     protected function getEngine()
     {
-        return $this->container->getParameter('ccdn_forum_forum.template.engine');
+        return $this->container->getParameter('map2u_forum.template.engine');
     }
 
     /**
@@ -351,7 +351,7 @@ class BaseController extends ContainerAware
     protected function getAuthorizer()
     {
         if (null == $this->authorizer) {
-            $this->authorizer = $this->container->get('ccdn_forum_forum.component.security.authorizer');
+            $this->authorizer = $this->container->get('map2u_forum.component.security.authorizer');
         }
 
         return $this->authorizer;
@@ -365,7 +365,7 @@ class BaseController extends ContainerAware
     protected function getForumModel()
     {
         if (null == $this->forumModel) {
-            $this->forumModel = $this->container->get('ccdn_forum_forum.model.forum');
+            $this->forumModel = $this->container->get('map2u_forum.model.forum');
         }
 
         return $this->forumModel;
@@ -379,7 +379,7 @@ class BaseController extends ContainerAware
     protected function getCategoryModel()
     {
         if (null == $this->categoryModel) {
-            $this->categoryModel = $this->container->get('ccdn_forum_forum.model.category');
+            $this->categoryModel = $this->container->get('map2u_forum.model.category');
         }
 
         return $this->categoryModel;
@@ -393,7 +393,7 @@ class BaseController extends ContainerAware
     protected function getBoardModel()
     {
         if (null == $this->boardModel) {
-            $this->boardModel = $this->container->get('ccdn_forum_forum.model.board');
+            $this->boardModel = $this->container->get('map2u_forum.model.board');
         }
 
         return $this->boardModel;
@@ -407,7 +407,7 @@ class BaseController extends ContainerAware
     protected function getTopicModel()
     {
         if (null == $this->topicModel) {
-            $this->topicModel = $this->container->get('ccdn_forum_forum.model.topic');
+            $this->topicModel = $this->container->get('map2u_forum.model.topic');
         }
 
         return $this->topicModel;
@@ -421,7 +421,7 @@ class BaseController extends ContainerAware
     protected function getPostModel()
     {
         if (null == $this->postModel) {
-            $this->postModel = $this->container->get('ccdn_forum_forum.model.post');
+            $this->postModel = $this->container->get('map2u_forum.model.post');
         }
 
         return $this->postModel;
@@ -435,7 +435,7 @@ class BaseController extends ContainerAware
     protected function getRegistryModel()
     {
         if (null == $this->registryModel) {
-            $this->registryModel = $this->container->get('ccdn_forum_forum.model.registry');
+            $this->registryModel = $this->container->get('map2u_forum.model.registry');
         }
 
         return $this->registryModel;
@@ -449,7 +449,7 @@ class BaseController extends ContainerAware
     protected function getSubscriptionModel()
     {
         if (null == $this->subscriptionModel) {
-            $this->subscriptionModel = $this->container->get('ccdn_forum_forum.model.subscription');
+            $this->subscriptionModel = $this->container->get('map2u_forum.model.subscription');
         }
 
         return $this->subscriptionModel;
@@ -461,7 +461,7 @@ class BaseController extends ContainerAware
      */
     protected function getCrumbs()
     {
-        return $this->container->get('ccdn_forum_forum.component.crumb_builder');
+        return $this->container->get('map2u_forum.component.crumb_builder');
     }
 
     /**
@@ -471,6 +471,6 @@ class BaseController extends ContainerAware
      */
     protected function getPageHelper()
     {
-        return $this->container->get('ccdn_forum_forum.component.helper.pagination_config');
+        return $this->container->get('map2u_forum.component.helper.pagination_config');
     }
 }

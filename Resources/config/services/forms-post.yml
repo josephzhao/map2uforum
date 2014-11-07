@@ -7,55 +7,55 @@ services:
     #
     # Post Forms.
     #
-    ccdn_forum_forum.form.type.post_create:
-        class: %ccdn_forum_forum.form.type.post_create.class%
+    map2u_forum.form.type.post_create:
+        class: %map2u_forum.form.type.post_create.class%
         arguments:
-            - %ccdn_forum_forum.entity.post.class%
+            - %map2u_forum.entity.post.class%
 
-    ccdn_forum_forum.form.handler.post_create:
-        class: %ccdn_forum_forum.form.handler.post_create.class%
+    map2u_forum.form.handler.post_create:
+        class: %map2u_forum.form.handler.post_create.class%
         arguments:
             - @event_dispatcher
             - @form.factory
-            - @ccdn_forum_forum.form.type.post_create
-            - @ccdn_forum_forum.model.post
-            - @ccdn_forum_forum.component.flood_control
+            - @map2u_forum.form.type.post_create
+            - @map2u_forum.model.post
+            - @map2u_forum.component.flood_control
 
-    ccdn_forum_forum.form.type.post_update:
-        class: %ccdn_forum_forum.form.type.post_update.class%
+    map2u_forum.form.type.post_update:
+        class: %map2u_forum.form.type.post_update.class%
         arguments:
-            - %ccdn_forum_forum.entity.post.class%
+            - %map2u_forum.entity.post.class%
 
-    ccdn_forum_forum.form.handler.post_update:
-        class: %ccdn_forum_forum.form.handler.post_update.class%
-        arguments:
-            - @event_dispatcher
-            - @form.factory
-            - @ccdn_forum_forum.form.type.post_update
-            - @ccdn_forum_forum.model.post
-
-    ccdn_forum_forum.form.type.post_delete:
-        class: %ccdn_forum_forum.form.type.post_delete.class%
-        arguments:
-            - %ccdn_forum_forum.entity.post.class%
-
-    ccdn_forum_forum.form.handler.post_delete:
-        class: %ccdn_forum_forum.form.handler.post_delete.class%
+    map2u_forum.form.handler.post_update:
+        class: %map2u_forum.form.handler.post_update.class%
         arguments:
             - @event_dispatcher
             - @form.factory
-            - @ccdn_forum_forum.form.type.post_delete
-            - @ccdn_forum_forum.model.post
+            - @map2u_forum.form.type.post_update
+            - @map2u_forum.model.post
 
-    ccdn_forum_forum.form.type.post_unlock:
-        class: %ccdn_forum_forum.form.type.post_unlock.class%
+    map2u_forum.form.type.post_delete:
+        class: %map2u_forum.form.type.post_delete.class%
         arguments:
-            - %ccdn_forum_forum.entity.post.class%
+            - %map2u_forum.entity.post.class%
 
-    ccdn_forum_forum.form.handler.post_unlock:
-        class: %ccdn_forum_forum.form.handler.post_unlock.class%
+    map2u_forum.form.handler.post_delete:
+        class: %map2u_forum.form.handler.post_delete.class%
         arguments:
             - @event_dispatcher
             - @form.factory
-            - @ccdn_forum_forum.form.type.post_unlock
-            - @ccdn_forum_forum.model.post
+            - @map2u_forum.form.type.post_delete
+            - @map2u_forum.model.post
+
+    map2u_forum.form.type.post_unlock:
+        class: %map2u_forum.form.type.post_unlock.class%
+        arguments:
+            - %map2u_forum.entity.post.class%
+
+    map2u_forum.form.handler.post_unlock:
+        class: %map2u_forum.form.handler.post_unlock.class%
+        arguments:
+            - @event_dispatcher
+            - @form.factory
+            - @map2u_forum.form.type.post_unlock
+            - @map2u_forum.model.post

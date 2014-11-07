@@ -38,9 +38,9 @@ class UserPostBaseController extends BaseController
     {
         // If post is the very first post of the topic then use a topic handler so user can change topic title.
         if ($post->getTopic()->getFirstPost()->getId() == $post->getId()) {
-            $formHandler = $this->container->get('ccdn_forum_forum.form.handler.topic_update');
+            $formHandler = $this->container->get('map2u_forum.form.handler.topic_update');
         } else {
-            $formHandler = $this->container->get('ccdn_forum_forum.form.handler.post_update');
+            $formHandler = $this->container->get('map2u_forum.form.handler.post_update');
         }
 
         $formHandler->setPost($post);
@@ -58,7 +58,7 @@ class UserPostBaseController extends BaseController
      */
     protected function getFormHandlerToDeletePost(Post $post)
     {
-        $formHandler = $this->container->get('ccdn_forum_forum.form.handler.post_delete');
+        $formHandler = $this->container->get('map2u_forum.form.handler.post_delete');
 
         $formHandler->setPost($post);
         $formHandler->setUser($this->getUser());

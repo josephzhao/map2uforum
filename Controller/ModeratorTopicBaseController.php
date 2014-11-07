@@ -37,7 +37,7 @@ class ModeratorTopicBaseController extends BaseController
      */
     protected function getFormHandlerToDeleteTopic(Topic $topic)
     {
-        $formHandler = $this->container->get('ccdn_forum_forum.form.handler.topic_delete');
+        $formHandler = $this->container->get('map2u_forum.form.handler.topic_delete');
 
         $formHandler->setTopic($topic);
         $formHandler->setUser($this->getUser());
@@ -55,7 +55,7 @@ class ModeratorTopicBaseController extends BaseController
      */
     protected function getFormHandlerToChangeBoardOnTopic(Forum $forum, Topic $topic)
     {
-        $formHandler = $this->container->get('ccdn_forum_forum.form.handler.change_topics_board');
+        $formHandler = $this->container->get('map2u_forum.form.handler.change_topics_board');
 
         $formHandler->setForum($forum);
         $formHandler->setTopic($topic);

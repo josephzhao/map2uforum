@@ -13,12 +13,18 @@ Map2u\ForumBundle\Entity\Board:
         cachedTopicCount:
             type: integer
             column: cached_topic_count
+            options:
+                default: 0
         cachedPostCount:
             type: integer
             column: cached_post_count
+            options:
+                default: 0
         listOrderPriority:
             type: integer
             column: list_order_priority
+            options:
+                default: 0
         readAuthorisedRoles:
             type: array
             column: read_authorised_roles

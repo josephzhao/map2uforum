@@ -2,13 +2,14 @@
 
 namespace Map2u\ForumBundle\Entity;
 
+use Map2u\ForumBundle\Entity\Model\Topic as AbstractTopic;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Topic
  */
-class Topic
-{
+class Topic extends AbstractTopic {
+
     /**
      * @var integer
      */
@@ -62,48 +63,49 @@ class Topic
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $posts;
+    protected $posts;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $subscriptions;
+    protected $subscriptions;
 
     /**
      * @var \Map2u\ForumBundle\Entity\Board
      */
-    private $board;
+    protected $board;
 
     /**
      * @var \Map2u\ForumBundle\Entity\Post
      */
-    private $firstPost;
+    protected $firstPost;
 
     /**
      * @var \Map2u\ForumBundle\Entity\Post
      */
-    private $lastPost;
+    protected $lastPost;
 
     /**
      * @var \Application\Sonata\UserBundle\Entity\User
      */
-    private $closedBy;
+    protected $closedBy;
 
     /**
      * @var \Application\Sonata\UserBundle\Entity\User
      */
-    private $deletedBy;
+    protected $deletedBy;
 
     /**
      * @var \Application\Sonata\UserBundle\Entity\User
      */
-    private $stickiedBy;
+    protected $stickiedBy;
 
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
+
+        parent::__construct();
         $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
         $this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -113,8 +115,7 @@ class Topic
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -124,8 +125,7 @@ class Topic
      * @param string $title
      * @return Topic
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
 
         return $this;
@@ -136,8 +136,7 @@ class Topic
      *
      * @return string 
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -147,8 +146,7 @@ class Topic
      * @param integer $cachedViewCount
      * @return Topic
      */
-    public function setCachedViewCount($cachedViewCount)
-    {
+    public function setCachedViewCount($cachedViewCount) {
         $this->cachedViewCount = $cachedViewCount;
 
         return $this;
@@ -159,8 +157,7 @@ class Topic
      *
      * @return integer 
      */
-    public function getCachedViewCount()
-    {
+    public function getCachedViewCount() {
         return $this->cachedViewCount;
     }
 
@@ -170,8 +167,7 @@ class Topic
      * @param integer $cachedReplyCount
      * @return Topic
      */
-    public function setCachedReplyCount($cachedReplyCount)
-    {
+    public function setCachedReplyCount($cachedReplyCount) {
         $this->cachedReplyCount = $cachedReplyCount;
 
         return $this;
@@ -182,8 +178,7 @@ class Topic
      *
      * @return integer 
      */
-    public function getCachedReplyCount()
-    {
+    public function getCachedReplyCount() {
         return $this->cachedReplyCount;
     }
 
@@ -193,8 +188,7 @@ class Topic
      * @param boolean $isClosed
      * @return Topic
      */
-    public function setIsClosed($isClosed)
-    {
+    public function setIsClosed($isClosed) {
         $this->isClosed = $isClosed;
 
         return $this;
@@ -205,9 +199,29 @@ class Topic
      *
      * @return boolean 
      */
-    public function getIsClosed()
-    {
+    public function getIsClosed() {
         return $this->isClosed;
+    }
+
+    /**
+     * Get isClosed
+     *
+     * @return boolean
+     */
+    public function isClosed() {
+        return $this->isClosed;
+    }
+
+    /**
+     * Set isClosed
+     *
+     * @param  boolean $isClosed
+     * @return Topic
+     */
+    public function setClosed($isClosed) {
+        $this->isClosed = $isClosed;
+
+        return $this;
     }
 
     /**
@@ -216,8 +230,7 @@ class Topic
      * @param \DateTime $closedDate
      * @return Topic
      */
-    public function setClosedDate($closedDate)
-    {
+    public function setClosedDate($closedDate) {
         $this->closedDate = $closedDate;
 
         return $this;
@@ -228,8 +241,7 @@ class Topic
      *
      * @return \DateTime 
      */
-    public function getClosedDate()
-    {
+    public function getClosedDate() {
         return $this->closedDate;
     }
 
@@ -239,8 +251,7 @@ class Topic
      * @param boolean $isDeleted
      * @return Topic
      */
-    public function setIsDeleted($isDeleted)
-    {
+    public function setIsDeleted($isDeleted) {
         $this->isDeleted = $isDeleted;
 
         return $this;
@@ -251,9 +262,29 @@ class Topic
      *
      * @return boolean 
      */
-    public function getIsDeleted()
-    {
+    public function getIsDeleted() {
         return $this->isDeleted;
+    }
+
+    /**
+     * Get isDeleted
+     *
+     * @return boolean
+     */
+    public function isDeleted() {
+        return $this->isDeleted;
+    }
+
+    /**
+     * Set isDeleted
+     *
+     * @param  boolean $isDeleted
+     * @return Topic
+     */
+    public function setDeleted($isDeleted) {
+        $this->isDeleted = $isDeleted;
+
+        return $this;
     }
 
     /**
@@ -262,8 +293,7 @@ class Topic
      * @param \DateTime $deletedDate
      * @return Topic
      */
-    public function setDeletedDate($deletedDate)
-    {
+    public function setDeletedDate($deletedDate) {
         $this->deletedDate = $deletedDate;
 
         return $this;
@@ -274,8 +304,7 @@ class Topic
      *
      * @return \DateTime 
      */
-    public function getDeletedDate()
-    {
+    public function getDeletedDate() {
         return $this->deletedDate;
     }
 
@@ -285,8 +314,7 @@ class Topic
      * @param boolean $isSticky
      * @return Topic
      */
-    public function setIsSticky($isSticky)
-    {
+    public function setIsSticky($isSticky) {
         $this->isSticky = $isSticky;
 
         return $this;
@@ -297,9 +325,29 @@ class Topic
      *
      * @return boolean 
      */
-    public function getIsSticky()
-    {
+    public function getIsSticky() {
         return $this->isSticky;
+    }
+
+    /**
+     * Get isSticky
+     *
+     * @return boolean
+     */
+    public function isSticky() {
+        return $this->isSticky;
+    }
+
+    /**
+     * Set isSticky
+     *
+     * @param  boolean $isSticky
+     * @return Topic
+     */
+    public function setSticky($isSticky) {
+        $this->isSticky = $isSticky;
+
+        return $this;
     }
 
     /**
@@ -308,8 +356,7 @@ class Topic
      * @param \DateTime $stickiedDate
      * @return Topic
      */
-    public function setStickiedDate($stickiedDate)
-    {
+    public function setStickiedDate($stickiedDate) {
         $this->stickiedDate = $stickiedDate;
 
         return $this;
@@ -320,8 +367,7 @@ class Topic
      *
      * @return \DateTime 
      */
-    public function getStickiedDate()
-    {
+    public function getStickiedDate() {
         return $this->stickiedDate;
     }
 
@@ -331,8 +377,7 @@ class Topic
      * @param \Map2u\ForumBundle\Entity\Post $posts
      * @return Topic
      */
-    public function addPost(\Map2u\ForumBundle\Entity\Post $posts)
-    {
+    public function addPost(\Map2u\ForumBundle\Entity\Post $posts) {
         $this->posts[] = $posts;
 
         return $this;
@@ -343,8 +388,7 @@ class Topic
      *
      * @param \Map2u\ForumBundle\Entity\Post $posts
      */
-    public function removePost(\Map2u\ForumBundle\Entity\Post $posts)
-    {
+    public function removePost(\Map2u\ForumBundle\Entity\Post $posts) {
         $this->posts->removeElement($posts);
     }
 
@@ -353,8 +397,7 @@ class Topic
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getPosts()
-    {
+    public function getPosts() {
         return $this->posts;
     }
 
@@ -364,8 +407,7 @@ class Topic
      * @param \Map2u\ForumBundle\Entity\Subscription $subscriptions
      * @return Topic
      */
-    public function addSubscription(\Map2u\ForumBundle\Entity\Subscription $subscriptions)
-    {
+    public function addSubscription(\Map2u\ForumBundle\Entity\Subscription $subscriptions) {
         $this->subscriptions[] = $subscriptions;
 
         return $this;
@@ -376,8 +418,7 @@ class Topic
      *
      * @param \Map2u\ForumBundle\Entity\Subscription $subscriptions
      */
-    public function removeSubscription(\Map2u\ForumBundle\Entity\Subscription $subscriptions)
-    {
+    public function removeSubscription(\Map2u\ForumBundle\Entity\Subscription $subscriptions) {
         $this->subscriptions->removeElement($subscriptions);
     }
 
@@ -386,8 +427,7 @@ class Topic
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getSubscriptions()
-    {
+    public function getSubscriptions() {
         return $this->subscriptions;
     }
 
@@ -397,8 +437,7 @@ class Topic
      * @param \Map2u\ForumBundle\Entity\Board $board
      * @return Topic
      */
-    public function setBoard(\Map2u\ForumBundle\Entity\Board $board = null)
-    {
+    public function setBoard(\Map2u\ForumBundle\Entity\Board $board = null) {
         $this->board = $board;
 
         return $this;
@@ -409,8 +448,7 @@ class Topic
      *
      * @return \Map2u\ForumBundle\Entity\Board 
      */
-    public function getBoard()
-    {
+    public function getBoard() {
         return $this->board;
     }
 
@@ -420,8 +458,7 @@ class Topic
      * @param \Map2u\ForumBundle\Entity\Post $firstPost
      * @return Topic
      */
-    public function setFirstPost(\Map2u\ForumBundle\Entity\Post $firstPost = null)
-    {
+    public function setFirstPost(\Map2u\ForumBundle\Entity\Post $firstPost = null) {
         $this->firstPost = $firstPost;
 
         return $this;
@@ -432,8 +469,7 @@ class Topic
      *
      * @return \Map2u\ForumBundle\Entity\Post 
      */
-    public function getFirstPost()
-    {
+    public function getFirstPost() {
         return $this->firstPost;
     }
 
@@ -443,8 +479,7 @@ class Topic
      * @param \Map2u\ForumBundle\Entity\Post $lastPost
      * @return Topic
      */
-    public function setLastPost(\Map2u\ForumBundle\Entity\Post $lastPost = null)
-    {
+    public function setLastPost(\Map2u\ForumBundle\Entity\Post $lastPost = null) {
         $this->lastPost = $lastPost;
 
         return $this;
@@ -455,77 +490,71 @@ class Topic
      *
      * @return \Map2u\ForumBundle\Entity\Post 
      */
-    public function getLastPost()
-    {
+    public function getLastPost() {
         return $this->lastPost;
     }
 
-    /**
-     * Set closedBy
-     *
-     * @param \Application\Sonata\UserBundle\Entity\User $closedBy
-     * @return Topic
-     */
-    public function setClosedBy(\Application\Sonata\UserBundle\Entity\User $closedBy = null)
-    {
-        $this->closedBy = $closedBy;
-
-        return $this;
-    }
+//    /**
+//     * Set closedBy
+//     *
+//     * @param \Application\Sonata\UserBundle\Entity\User $closedBy
+//     * @return Topic
+//     */
+//    public function setClosedBy(\Application\Sonata\UserBundle\Entity\User $closedBy = null) {
+//        $this->closedBy = $closedBy;
+//
+//        return $this;
+//    }
 
     /**
      * Get closedBy
      *
      * @return \Application\Sonata\UserBundle\Entity\User 
      */
-    public function getClosedBy()
-    {
+    public function getClosedBy() {
         return $this->closedBy;
     }
 
-    /**
-     * Set deletedBy
-     *
-     * @param \Application\Sonata\UserBundle\Entity\User $deletedBy
-     * @return Topic
-     */
-    public function setDeletedBy(\Application\Sonata\UserBundle\Entity\User $deletedBy = null)
-    {
-        $this->deletedBy = $deletedBy;
-
-        return $this;
-    }
+//    /**
+//     * Set deletedBy
+//     *
+//     * @param \Application\Sonata\UserBundle\Entity\User $deletedBy
+//     * @return Topic
+//     */
+//    public function setDeletedBy(\Application\Sonata\UserBundle\Entity\User $deletedBy = null) {
+//        $this->deletedBy = $deletedBy;
+//
+//        return $this;
+//    }
 
     /**
      * Get deletedBy
      *
      * @return \Application\Sonata\UserBundle\Entity\User 
      */
-    public function getDeletedBy()
-    {
+    public function getDeletedBy() {
         return $this->deletedBy;
     }
 
-    /**
-     * Set stickiedBy
-     *
-     * @param \Application\Sonata\UserBundle\Entity\User $stickiedBy
-     * @return Topic
-     */
-    public function setStickiedBy(\Application\Sonata\UserBundle\Entity\User $stickiedBy = null)
-    {
-        $this->stickiedBy = $stickiedBy;
-
-        return $this;
-    }
+//    /**
+//     * Set stickiedBy
+//     *
+//     * @param \Application\Sonata\UserBundle\Entity\User $stickiedBy
+//     * @return Topic
+//     */
+//    public function setStickiedBy(\Application\Sonata\UserBundle\Entity\User $stickiedBy = null) {
+//        $this->stickiedBy = $stickiedBy;
+//
+//        return $this;
+//    }
 
     /**
      * Get stickiedBy
      *
      * @return \Application\Sonata\UserBundle\Entity\User 
      */
-    public function getStickiedBy()
-    {
+    public function getStickiedBy() {
         return $this->stickiedBy;
     }
+
 }

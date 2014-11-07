@@ -36,7 +36,7 @@ class ModeratorPostBaseController extends BaseController
      */
     protected function getFormHandlerToUnlockPost(Post $post)
     {
-        $formHandler = $this->container->get('ccdn_forum_forum.form.handler.post_unlock');
+        $formHandler = $this->container->get('map2u_forum.form.handler.post_unlock');
 
         $formHandler->setPost($post);
         $formHandler->setUser($this->getUser());
