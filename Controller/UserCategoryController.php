@@ -40,7 +40,8 @@ class UserCategoryController extends BaseController
      */
     public function indexAction($forumName)
     {
-
+        $session=$this->getRequest()->getSession();
+        $session->set("current_menu", "forum");
        
         if ($forumName != 'default') {
             $this->isFound($forum = $this->getForumModel()->findOneForumByName($forumName));
