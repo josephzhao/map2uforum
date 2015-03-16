@@ -33,7 +33,7 @@ class CrumbFactory
 {
     /**
      *
-     * @var \Symfony\Bundle\FrameworkBundle\Translation\Translator $translator
+     * @var \Symfony\Component\Translation\TranslatorInterface $translator
      */
     private $translator;
 
@@ -46,7 +46,7 @@ class CrumbFactory
     /**
      *
      * @access public
-     * @param \Symfony\Bundle\FrameworkBundle\Translation\Translator $translator
+     * @param \Symfony\Component\Translation\TranslatorInterface $translator
      * @param \Symfony\Component\Routing\RouterInterface             $router
      */
     public function __construct(Translator $translator, RouterInterface $router)
