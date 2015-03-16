@@ -13,7 +13,7 @@
 
 namespace Map2u\ForumBundle\Component\Crumbs\Factory;
 
-use Symfony\Bundle\FrameworkBundle\Translation\Translator;
+use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
@@ -31,7 +31,7 @@ class CrumbTrail
 {
     /**
      *
-     * @var \Symfony\Bundle\FrameworkBundle\Translation\Translator $translator
+     * @var \use Symfony\Component\Translation\TranslatorInterface $translator
      */
     private $translator;
 
@@ -50,10 +50,10 @@ class CrumbTrail
     /**
      *
      * @access public
-     * @param \Symfony\Bundle\FrameworkBundle\Translation\Translator $translator
+     * @param use Symfony\Component\Translation\TranslatorInterface $translator
      * @param \Symfony\Component\Routing\RouterInterface             $router
      */
-    public function __construct(Translator $translator, RouterInterface $router)
+    public function __construct(TranslatorInterface $translator, RouterInterface $router)
     {
         $this->translator = $translator;
         $this->router = $router;
